@@ -1,7 +1,7 @@
 import {
   validateCreateUser,
   validateUpdateUser,
-} from "@/validators/user/validate";
+} from "@/validators/user/validator";
 
 describe("Create User Validator", () => {
   test("Valid data passes validation", () => {
