@@ -1,4 +1,7 @@
-import { createUserSchema, updateUserSchema } from "@/validators/user/schema";
+import {
+  createUserSchema,
+  updateUserSchema,
+} from "@/lib/validators/user/schema";
 
 export function validateCreateUser(data: unknown) {
   return createUserSchema.safeParse(data);

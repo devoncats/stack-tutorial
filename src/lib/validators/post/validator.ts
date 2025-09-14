@@ -1,4 +1,7 @@
-import { createPostSchema, updatePostSchema } from "@/validators/post/schema";
+import {
+  createPostSchema,
+  updatePostSchema,
+} from "@/lib/validators/post/schema";
 
 export function validateCreatePost(data: unknown) {
   return createPostSchema.safeParse(data);
