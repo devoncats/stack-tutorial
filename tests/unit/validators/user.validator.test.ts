@@ -1,10 +1,11 @@
+import { describe, expect, it } from "vitest";
 import {
   validateCreateUser,
   validateUpdateUser,
-} from "@/validators/user/validator";
+} from "@/lib/validators/user/validator";
 
 describe("Create User Validator", () => {
-  test("Valid data passes validation", () => {
+  it("Valid data passes validation", () => {
     const input = {
       email: "devoncats.dev@outlook.com",
       name: "Gregorio Samsa",
@@ -13,7 +14,7 @@ describe("Create User Validator", () => {
     expect(validateCreateUser(input).success).toBe(true);
   });
 
-  test("Invalid email fails validation", () => {
+  it("Invalid email fails validation", () => {
     const input = {
       email: "invalid-email",
       name: "Gregorio Samsa",
@@ -22,7 +23,7 @@ describe("Create User Validator", () => {
     expect(validateCreateUser(input).success).toBe(false);
   });
 
-  test("Missing email fails validation", () => {
+  it("Missing email fails validation", () => {
     const input = {
       name: "Gregorio Samsa",
     };
@@ -32,7 +33,7 @@ describe("Create User Validator", () => {
 });
 
 describe("Update User Validator", () => {
-  test("Valid update data passes validation", () => {
+  it("Valid update data passes validation", () => {
     const input = {
       email: "notdevoncats.dev@outlook.com",
       name: "Anti Gregorio Samsa",
@@ -40,7 +41,7 @@ describe("Update User Validator", () => {
     expect(validateUpdateUser(input).success).toBe(true);
   });
 
-  test("Invalid email fails validation", () => {
+  it("Invalid email fails validation", () => {
     const input = {
       email: "maybe-an-invalid-email",
       name: "Anti Gregorio Samsa",
@@ -48,21 +49,21 @@ describe("Update User Validator", () => {
     expect(validateUpdateUser(input).success).toBe(false);
   });
 
-  test("Missing email passes if not required", () => {
+  it("Missing email passes if not required", () => {
     const input = {
-      name: "Anti Gregorio Samsa",
+      name: "Gregor Samsa Updated",
     };
     expect(validateUpdateUser(input).success).toBe(true);
   });
 
-  test("Missing name passes if not required", () => {
+  it("Missing name passes if not required", () => {
     const input = {
-      email: "notdevoncats.dev@outlook.com",
+      email: "updated.email@outlook.com",
     };
     expect(validateUpdateUser(input).success).toBe(true);
   });
 
-  test("Empty input fails validation", () => {
+  it("Empty input fails validation", () => {
     const input = {};
     expect(validateUpdateUser(input).success).toBe(false);
   });

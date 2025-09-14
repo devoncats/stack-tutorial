@@ -1,7 +1,7 @@
 import {
   validateCreatePost,
   validateUpdatePost,
-} from "@/validators/post/validator";
+} from "@/lib/validators/post/validator";
 
 describe("Create Post Validator", () => {
   test("Valid data passes validation", () => {
