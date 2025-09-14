@@ -8,7 +8,9 @@
     "start": "next start",
     "lint": "biome check",
     "format": "biome format --write",
-    "test": "vitest",
+    "test:all": "vitest",
+    "test:unit": "vitest tests/unit",
+    "test:integration": "vitest tests/integration",
     "migrate:dev": "dotenv -e .env.development -- pnpm exec prisma migrate dev"
   },
   "dependencies": {

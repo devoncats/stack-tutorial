@@ -99,7 +99,7 @@ describe("User Service", () => {
       .mockRejectedValue(new Error("Database error"));
 
     await expect(listUsers({ skip: 0, take: 10 })).rejects.toThrow(
-      "Unknown database error"
+      "Unknown database error",
     );
 
     expect(mockTransaction).toHaveBeenCalledWith([
@@ -156,7 +156,7 @@ describe("User Service", () => {
       .mockRejectedValue(new Error("Database error"));
 
     await expect(createUser(userInput)).rejects.toThrow(
-      "Unknown database error"
+      "Unknown database error",
     );
     expect(mockCreate).toHaveBeenCalledWith({ data: userInput });
   });
@@ -221,7 +221,7 @@ describe("User Service", () => {
       .spyOn(prisma.user, "update")
       .mockRejectedValue(new Error("Unknown database error"));
     await expect(updateUser(userId, updateData)).rejects.toThrow(
-      "Unknown database error"
+      "Unknown database error",
     );
     expect(mockUpdate).toHaveBeenCalledWith({
       where: { id: userId },

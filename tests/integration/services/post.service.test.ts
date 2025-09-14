@@ -167,7 +167,7 @@ describe("Post Service", () => {
       .mockRejectedValue(new Error("Unknown database error"));
 
     await expect(createPost(postInput)).rejects.toThrow(
-      "Unknown database error"
+      "Unknown database error",
     );
     expect(mockCreate).toHaveBeenCalledWith({ data: postInput });
   });
@@ -185,11 +185,11 @@ describe("Post Service", () => {
       new Prisma.PrismaClientKnownRequestError("Invalid data format", {
         code: "P2007",
         clientVersion: "4.15.0",
-      })
+      }),
     );
 
     await expect(createPost(postInput)).rejects.toThrow(
-      "Data validation error"
+      "Data validation error",
     );
     expect(mockCreate).toHaveBeenCalledWith({ data: postInput });
   });
@@ -262,7 +262,7 @@ describe("Post Service", () => {
       .spyOn(prisma.post, "update")
       .mockRejectedValue(new Error("Unknown database error"));
     await expect(updatePost(1, updateData)).rejects.toThrow(
-      "Unknown database error"
+      "Unknown database error",
     );
     expect(mockUpdate).toHaveBeenCalledWith({
       where: { id: 1 },
