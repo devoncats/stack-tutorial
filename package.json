@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "biome check",
     "format": "biome format --write",
-    "test": "jest"
+    "test": "jest",
+    "migrate:dev": "dotenv -e .env.development -- pnpm exec prisma migrate dev"
   },
   "dependencies": {
     "@prisma/client": "6.16.1",
