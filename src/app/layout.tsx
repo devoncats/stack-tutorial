@@ -1,4 +1,4 @@
-import "./globals.css";
+import "@/styles/globals.css";
 import type { Metadata } from "next";
 import { seoMetadata } from "@/config/seo-metadata";
 import { fontDisplay, fontMono, fontSans } from "@/lib/fonts";
