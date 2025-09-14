@@ -1,40 +1,37 @@
 import { DatabaseError } from "@/lib/errors";
 import { prisma } from "@/lib/prisma";
 import type { PaginationOptions } from "@/lib/validators/pagination/types";
-import type {
-  CreateUserInput,
-  UpdateUserInput,
-} from "@/lib/validators/user/types";
+import type { CreatePostInput } from "@/lib/validators/post/types";
 
-export async function createUser(data: CreateUserInput) {
+export async function createPost(data: CreatePostInput) {
   try {
-    const user = await prisma.user.create({ data });
+    const post = await prisma.post.create({ data });
 
-    return user;
+    return post;
   } catch (error: unknown) {
     throw DatabaseError.fromPrismaError(error);
   }
 }
 
-export async function getUser(id: string) {
+export async function getPost(id: number) {
   try {
-    const user = await prisma.user.findUnique({ where: { id } });
+    const post = await prisma.post.findUnique({ where: { id } });
 
-    return user;
+    return post;
   } catch (error: unknown) {
     throw DatabaseError.fromPrismaError(error);
   }
 }
 
-export async function listUsers({ skip = 0, take = 10 }: PaginationOptions) {
+export async function listPosts({ skip = 0, take = 10 }: PaginationOptions) {
   try {
     const [data, total] = await prisma.$transaction([
-      prisma.user.findMany({
+      prisma.post.findMany({
         skip,
         take,
         orderBy: { createdAt: "desc" },
       }),
-      prisma.user.count(),
+      prisma.post.count(),
     ]);
 
     return { data, total };
@@ -43,21 +40,21 @@ export async function listUsers({ skip = 0, take = 10 }: PaginationOptions) {
   }
 }
 
-export async function updateUser(id: string, data: UpdateUserInput) {
+export async function updatePost(id: number, data: Partial<CreatePostInput>) {
   try {
-    const user = await prisma.user.update({ where: { id }, data });
+    const post = await prisma.post.update({ where: { id }, data });
 
-    return user;
+    return post;
   } catch (error: unknown) {
     throw DatabaseError.fromPrismaError(error);
   }
 }
 
-export async function deleteUser(id: string) {
+export async function deletePost(id: number) {
   try {
-    const user = prisma.user.delete({ where: { id } });
+    const post = await prisma.post.delete({ where: { id } });
 
-    return user;
+    return post;
   } catch (error: unknown) {
     throw DatabaseError.fromPrismaError(error);
   }
