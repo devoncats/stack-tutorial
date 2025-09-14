@@ -1,4 +1,4 @@
-import { DatabaseError } from "@/lib/errors";
+import { convertPrismaError } from "@/lib/convert-prisma-error";
 import { prisma } from "@/lib/prisma";
 import type { PaginationOptions } from "@/lib/validators/pagination/types";
 import type {
@@ -12,7 +12,7 @@ export async function createUser(data: CreateUserInput) {
 
     return user;
   } catch (error: unknown) {
-    throw DatabaseError.fromPrismaError(error);
+    throw convertPrismaError(error);
   }
 }
 
@@ -22,7 +22,7 @@ export async function getUser(id: string) {
 
     return user;
   } catch (error: unknown) {
-    throw DatabaseError.fromPrismaError(error);
+    throw convertPrismaError(error);
   }
 }
 
@@ -39,7 +39,7 @@ export async function listUsers({ skip = 0, take = 10 }: PaginationOptions) {
 
     return { data, total };
   } catch (error: unknown) {
-    throw DatabaseError.fromPrismaError(error);
+    throw convertPrismaError(error);
   }
 }
 
@@ -49,7 +49,7 @@ export async function updateUser(id: string, data: UpdateUserInput) {
 
     return user;
   } catch (error: unknown) {
-    throw DatabaseError.fromPrismaError(error);
+    throw convertPrismaError(error);
   }
 }
 
@@ -59,6 +59,6 @@ export async function deleteUser(id: string) {
 
     return user;
   } catch (error: unknown) {
-    throw DatabaseError.fromPrismaError(error);
+    throw convertPrismaError(error);
   }
 }
