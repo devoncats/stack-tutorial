@@ -22,5 +22,5 @@ export const updatePostSchema = z
     {
       message:
         "At least one field (title, content, published, or authorId) must be provided for update",
-    }
+    },
   );
