@@ -17,7 +17,7 @@ export async function GET(request: NextRequest) {
     if (!success) {
       throw new ValidationError(
         "Invalid pagination parameters",
-        transformZodIssues(error)
+        transformZodIssues(error),
       );
     }
 
@@ -34,7 +34,7 @@ export async function GET(request: NextRequest) {
         data: posts,
         pagination,
       },
-      { status: 200 }
+      { status: 200 },
     );
   } catch (error) {
     if (error instanceof ValidationError) {
@@ -66,7 +66,7 @@ export async function POST(request: NextRequest) {
         data: post,
         message: "Post created successfully",
       },
-      { status: 201 }
+      { status: 201 },
     );
   } catch (error) {
     if (error instanceof ValidationError) {

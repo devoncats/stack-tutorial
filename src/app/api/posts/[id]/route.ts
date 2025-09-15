@@ -5,7 +5,7 @@ import { deletePost, getPost, updatePost } from "@/services/post.service";
 
 export async function GET(
   _req: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: { params: Promise<{ id: string }> },
 ) {
   try {
     const { id } = await params;
@@ -27,7 +27,7 @@ export async function GET(
         success: true,
         data: Post,
       },
-      { status: 200 }
+      { status: 200 },
     );
   } catch (error) {
     if (error instanceof ValidationError) {
@@ -52,7 +52,7 @@ export async function GET(
 
 export async function DELETE(
   _req: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: { params: Promise<{ id: string }> },
 ) {
   try {
     const { id } = await params;
@@ -76,7 +76,7 @@ export async function DELETE(
         success: true,
         message: "Post deleted successfully",
       },
-      { status: 204 }
+      { status: 204 },
     );
   } catch (error) {
     if (error instanceof ValidationError) {
@@ -101,7 +101,7 @@ export async function DELETE(
 
 export async function PUT(
   request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: { params: Promise<{ id: string }> },
 ) {
   try {
     const { id } = await params;
@@ -127,7 +127,7 @@ export async function PUT(
         data: updatedPost,
         message: "Post updated successfully",
       },
-      { status: 200 }
+      { status: 200 },
     );
   } catch (error) {
     if (error instanceof ValidationError) {
